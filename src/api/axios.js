@@ -1,0 +1,34 @@
+import axios from 'axios';
+import router from '@/router';
+import { useAuthStore } from '@/stores/auth.js';
+
+const api = axios.create({
+  baseURL: 'http://202.10.47.76:8024/api/v1' // Ganti dengan URL API Anda
+});
+
+api.interceptors.request.use(config => {
+  const token = localStorage.getItem('access_token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+}, error => {
+  return Promise.reject(error);
+});
+
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    const authStore = useAuthStore();
+
+    if (error.response && error.response.status === 401) {
+      // Panggil fungsi logout sentral yang sudah kita perbaiki
+      authStore.logout();
+    }
+    return Promise.reject(error);
+  }
+);
+
+export default api;
