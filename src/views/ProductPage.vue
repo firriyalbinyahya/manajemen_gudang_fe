@@ -126,12 +126,9 @@ const toast = useToast();
 const products = ref([]);
 const modalStore = useModalStore();
 
-// State baru untuk pencarian dan filter
 const searchQuery = ref('');
 const selectedStatus = ref('');
 
-
-// State baru untuk pagination
 const currentPage = ref(1);
 const itemsPerPage = ref(5);
 const totalItems = ref(0);
@@ -144,8 +141,8 @@ let fetchTimeout = null;
 const fetchProducts = async () => {
   try {
     const params = new URLSearchParams({
-      page: currentPage.value, // Kita mulai dari halaman 1
-      limit: itemsPerPage.value, // Batas 10 item per halaman
+      page: currentPage.value, 
+      limit: itemsPerPage.value, 
       search: searchQuery.value,
       status: selectedStatus.value
     });
@@ -161,14 +158,11 @@ const fetchProducts = async () => {
 const exportToCsv = () => {
   const headers = ['Nama Produk', 'SKU', 'Kuantitas', 'Lokasi', 'Status'];
   const csvRows = [];
-  
-  // Tambahkan baris header
   csvRows.push(headers.join(','));
   
-  // Tambahkan baris data
   for (const product of products.value) {
     const row = [
-      `"${product.product_name}"`, // Gunakan kutip ganda untuk menangani koma dalam teks
+      `"${product.product_name}"`,
       `"${product.sku}"`,
       product.quantity,
       `"${product.location}"`,
@@ -252,10 +246,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-
-
-
-/* Gaya untuk kontainer pagination */
 .pagination-container {
   display: flex;
   justify-content: space-between;
@@ -379,7 +369,6 @@ onMounted(() => {
   color: #888;
 }
 
-/* Wrapper untuk select filter dan ikon */
 .filter-control-wrapper {
   position: relative;
   display: flex;
@@ -389,7 +378,7 @@ onMounted(() => {
 
 .filter-select {
   padding: 10px;
-  padding-left: 30px; /* Tambah padding kiri untuk ikon */
+  padding-left: 30px;
   border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 0.9rem;
@@ -409,24 +398,21 @@ onMounted(() => {
   color: #888;
 }
 
-/*
-  Gaya untuk tabel
-*/
 .product-table {
   width: 100%;
-  border-collapse: separate; /* Gunakan separate untuk border-radius */
+  border-collapse: separate; 
   border-spacing: 0;
   background-color: white;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Bayangan yang lebih lembut */
-  overflow: hidden; /* Penting untuk border-radius */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); 
+  overflow: hidden; 
 }
 
 .product-table th,
 .product-table td {
   padding: 15px 20px;
   text-align: left;
-  border-bottom: 1px solid #dee2e6; /* Garis pemisah yang lebih halus */
+  border-bottom: 1px solid #dee2e6;
 }
 
 .product-table th {
@@ -438,7 +424,7 @@ onMounted(() => {
 }
 
 .product-table tbody tr:hover {
-  background-color: #f1f3f5; /* Efek hover untuk baris */
+  background-color: #f1f3f5;
   cursor: pointer;
 }
 
@@ -446,9 +432,6 @@ onMounted(() => {
   border-bottom: none;
 }
 
-/*
-  Gaya untuk tombol aksi
-*/
 .btn-edit {
   background-color: #2c3e50;
   color: white;
@@ -457,7 +440,7 @@ onMounted(() => {
   font-family: 'Poppins';
   cursor: pointer;
   border-radius: 6px;
-  margin-right: 5px; /* Memberi jarak ke tombol sebelah */
+  margin-right: 5px;
   transition: background-color 0.3s;
 }
 
@@ -474,7 +457,7 @@ onMounted(() => {
   border-radius: 6px;
   font-family: 'Poppins';
   transition: background-color 0.3s;
-  margin-right: 5px; /* Memberi jarak ke tombol sebelah */
+  margin-right: 5px;
 }
 
 .btn-export {
@@ -489,9 +472,9 @@ onMounted(() => {
   cursor: pointer;
   transition: background-color 0.3s, box-shadow 0.2s;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex; /* Penting untuk menyatukan ikon dan teks */
-  align-items: center; /* Menyelaraskan secara vertikal */
-  gap: 8px; /* Memberikan jarak antar ikon dan teks */
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .btn-action:hover {
@@ -506,11 +489,10 @@ onMounted(() => {
   font-family: 'Poppins';
   cursor: pointer;
   border-radius: 6px;
-  margin-right: 5px; /* Memberi jarak ke tombol sebelah */
+  margin-right: 5px;
   transition: background-color 0.3s;
 }
 
-/* Gaya untuk tombol Hapus */
 .btn-delete {
   background-color: #dc3545;
   color: white;

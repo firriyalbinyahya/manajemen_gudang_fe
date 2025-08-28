@@ -18,6 +18,9 @@
         <button type="submit" class="register-button">Daftar</button>
         <p v-if="error" class="error-message">{{ error }}</p>
         <p v-if="success" class="success-message">{{ success }}</p>
+        <div class="login-link">
+            <p>Sudah punya akun? <router-link to="/login">Masuk di sini.</router-link></p>
+        </div>
       </form>
     </div>
   </div>
@@ -136,5 +139,21 @@ input:focus {
   color: #28a745;
   margin-top: 15px;
   font-weight: 500;
+}
+
+.login-link {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.login-link a {
+  color: #28a745;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
 }
 </style>

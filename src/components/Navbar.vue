@@ -2,7 +2,7 @@
   <nav class="navbar">
     <div class="navbar-left">
       <router-link to="/dashboard" class="nav-link">Dashboard</router-link>
-      <router-link to="/products" class="nav-link">Products</router-link>
+      <router-link to="/products" class="nav-link">Produk</router-link>
     </div>
     <div class="navbar-right">
       <span class="greeting">Hi, {{ authStore.username }}</span>
@@ -40,7 +40,7 @@ const logout = () => {
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: 20px; /* Jarak antar menu */
+  gap: 20px;
 }
 
 .nav-link {
@@ -51,7 +51,7 @@ const logout = () => {
 }
 
 .nav-link:hover {
-  color: #000000; /* Warna hijau saat hover */
+  color: #000000;
 }
 
 .greeting {
@@ -76,8 +76,6 @@ const logout = () => {
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  
-  /* Flexbox untuk menata ikon dan teks */
   display: flex;
   align-items: center;
   gap: 8px;
@@ -87,7 +85,6 @@ const logout = () => {
   background-color: #c0392b;
 }
 
-/* Gaya untuk ikon */
 .icon {
   width: 20px;
   height: 20px;

@@ -3,7 +3,7 @@ import router from '@/router';
 import { useAuthStore } from '@/stores/auth.js';
 
 const api = axios.create({
-  baseURL: 'http://202.10.47.76:8024/api/v1' // Ganti dengan URL API Anda
+  baseURL: import.meta.env.VITE_API_BASE_URL,
 });
 
 api.interceptors.request.use(config => {
@@ -24,7 +24,6 @@ api.interceptors.response.use(
     const authStore = useAuthStore();
 
     if (error.response && error.response.status === 401) {
-      // Panggil fungsi logout sentral yang sudah kita perbaiki
       authStore.logout();
     }
     return Promise.reject(error);

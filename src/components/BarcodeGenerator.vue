@@ -19,13 +19,12 @@ watchEffect(() => {
   if (barcodeSvg.value && props.value) {
     try {
       JsBarcode(barcodeSvg.value, props.value, {
-        format: "CODE128", // Atau format lain seperti "EAN13", "UPC", dll.
+        format: "CODE128",
         height: 30,
-        displayValue: false, // Sembunyikan tulisan SKU di bawah barcode
+        displayValue: false,
       });
     } catch (e) {
       console.error("Failed to generate barcode:", e);
-      // Anda bisa menampilkan pesan error atau fallback lainnya di sini
     }
   }
 });

@@ -3,25 +3,61 @@
     <h2>Dashboard</h2>
     <p>Selamat datang di halaman Dashboard. Di sini Anda dapat melihat ringkasan bisnis Anda secara sekilas.</p>
     
-    <div class="summary-cards">
+     <div class="summary-cards">
       <div class="card">
         <h3>Total Produk</h3>
-        <p class="card-value">...</p>
+        <p class="card-value">{{ Math.round(animatedTotalProducts) }}</p>
       </div>
       <div class="card">
         <h3>Total Stok</h3>
-        <p class="card-value">...</p>
+        <p class="card-value">{{ Math.round(animatedTotalStock) }}</p>
       </div>
       <div class="card">
         <h3>Stok Rendah</h3>
-        <p class="card-value">...</p>
+        <p class="card-value">{{ Math.round(animatedLowStockItems) }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-// Logika pengambilan data akan ditambahkan di sini nanti
+import { ref, onMounted, watchEffect } from 'vue';
+import { useTransition } from '@vueuse/core';
+import api from '@/api/axios.js';
+import { useToast } from 'vue-toastification';
+
+const toast = useToast();
+const totalProducts = ref(0);
+const totalStock = ref(0);
+const lowStockItems = ref(0);
+
+const animatedTotalProducts = useTransition(totalProducts, {
+  duration: 1000, 
+});
+const animatedTotalStock = useTransition(totalStock, {
+  duration: 1200, 
+});
+const animatedLowStockItems = useTransition(lowStockItems, {
+  duration: 800,
+});
+
+
+const fetchDashboardSummary = async () => {
+  try {
+    const response = await api.get('/report');
+    const data = response.data.data;
+    totalProducts.value = data.total_products;
+    totalStock.value = data.total_stock;
+    lowStockItems.value = data.low_stock_items;
+  } catch (error) {
+    console.error('Error fetching dashboard summary:', error);
+    toast.error('Gagal memuat data dashboard.');
+  }
+};
+
+onMounted(() => {
+  fetchDashboardSummary();
+});
 </script>
 
 <style scoped>

@@ -12,7 +12,7 @@
           <label for="password">Password</label>
           <input type="password" id="password" v-model="password" required />
         </div>
-        <button type="submit" :disabled="isLoading">
+        <button class="button-submit" type="submit" :disabled="isLoading">
           <span v-if="isLoading">Memuat...</span>
           <span v-else>Masuk</span>
         </button>
@@ -75,6 +75,11 @@ const login = async () => {
   width: 100%;
   max-width: 400px;
   text-align: center;
+}
+
+.button-submit {
+    background-color: #2c3e50;
+    font-family: 'Poppins';
 }
 
 h2 {

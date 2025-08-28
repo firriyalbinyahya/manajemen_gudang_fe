@@ -8,7 +8,7 @@
       </div>
       <div>
         <label for="sku">SKU:</label>
-        <input type="text" id="sku" v-model="product.sku" required />
+        <input type="text" id="sku" v-model="product.sku" :disabled="editingProduct" required />
       </div>
       <div>
         <label for="quantity">Kuantitas:</label>

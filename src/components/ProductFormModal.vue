@@ -16,13 +16,10 @@ import { useModalStore } from '@/stores/modal.js';
 import ProductForm from './ProductForm.vue';
 
 const modalStore = useModalStore();
-// Definisikan event yang akan dipancarkan ke komponen induk (ProductPage)
 const emit = defineEmits(['product-added']); 
 
 const handleProductSuccess = () => {
-  // Tutup modal
   modalStore.closeProductForm();
-  // Pancarkan event 'product-added' ke ProductPage
   emit('product-added'); 
 };
 </script>

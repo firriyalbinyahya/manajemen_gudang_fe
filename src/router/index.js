@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import LoginPage from '@/views/LoginPage.vue';
 import ProductPage from '@/views/ProductPage.vue';
 import RegisterPage from '@/views/RegisterPage.vue';
-import DashboardPage from '@/views/DashboardPage.vue'; // Impor komponen dashboard
+import DashboardPage from '@/views/DashboardPage.vue';
 
 const routes = [
   {
@@ -29,7 +29,7 @@ const routes = [
   },
   {
     path: '/',
-    redirect: '/products',
+    redirect: '/dashboard',
   },
 ];
 
